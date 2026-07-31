@@ -5,8 +5,10 @@ import checkoutStepOnePage from '../pageobjects/checkout-step-one.page.js';
 import checkoutOverviewPage from '../pageobjects/checkout-overview.page.js';
 import checkoutCompletePage from '../pageobjects/checkout-complete.page.js';
 import { STANDARD_PASSWORD } from '../data/users.js';
+import { PRODUCTS } from '../data/products.js';
+import { CUSTOMER } from '../data/customer.js';
 
-const productName = process.env.PRODUCT_NAME || 'Sauce Labs Backpack';
+const productName = PRODUCTS.default;
 
 describe('UC-1: Checkout flow', () => {
     it(`should complete checkout for "${productName}"`, async () => {
@@ -21,11 +23,7 @@ describe('UC-1: Checkout flow', () => {
         await expect(await cartPage.hasItem(productName)).toBe(true);
         await cartPage.proceedToCheckout();
 
-        await checkoutStepOnePage.submitCustomerInformation({
-            firstName: 'John',
-            lastName: 'Doe',
-            postalCode: '01001'
-        });
+        await checkoutStepOnePage.submitCustomerInformation(CUSTOMER);
 
         await expect(await checkoutOverviewPage.hasItem(productName)).toBe(true);
         await checkoutOverviewPage.finishCheckout();

@@ -43,3 +43,9 @@ Failed tests automatically attach a screenshot to the Allure results.
 
 ## Clean generated reports:
 npm run clean
+
+
+## Improvements
+- Extracted duplicated hasItem logic into reusable helper.
+- Moved product and customer data into data files.
+- Added simple logger example for field input.
