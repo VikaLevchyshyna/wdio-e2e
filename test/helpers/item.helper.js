@@ -1,5 +1,8 @@
 
 export async function hasItem(items, productName) {
-    const names = await Promise.all(items.map(item => item.getText()));
+    const array = Array.from(items);
+    const names = await Promise.all(array.map(item => item.getText()));
     return names.includes(productName);
 }
+
+
